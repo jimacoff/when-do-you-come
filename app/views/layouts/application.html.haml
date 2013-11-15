@@ -1,0 +1,28 @@
+!!!
+%html
+  %head
+    %title WhenDoYouCome
+    %meta{'http-equiv' => 'Content-Type', :content => "text/html; charset=utf-8"}
+    %link(rel="stylesheet" href="http://fonts.googleapis.com/css?family=Courgette&subset=latin-ext,latin")
+    %link(rel="icon" type="image/x-icon" href="#{image_path('favicon.ico')}")
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true
+    = javascript_include_tag "application", "data-turbolinks-track" => true
+    = csrf_meta_tags
+  %body
+    .wrapper
+      .navbar.navbar-fixed-top{:role => "navigation"}
+        .container
+          .navbar-header
+            = render :partial => "layouts/menu"
+          .menu-container.collapse.navbar-collapse
+            = render :partial => "layouts/session"
+
+
+    = yield
+
+    .footer
+      %span &copy; 2013 Pinker.sk
+
+    = yield :js_data
+    = yield :scripts
