@@ -1,19 +1,19 @@
 %ul.nav.navbar-nav.navbar-right
-  - if signed_in?
-    %li
-      %a{href: '/ponuka/new'} Pridaj inzerát
-    %li
-      %a{href: '/ponuka/manage'} Spravuj svoje inzeráty
-    %li
-      %a{href: signout_path, id: 'sign_out'} Odhlás sa
-    -if current_user.email=="jendek.tomas@gmail.com" ||  current_user.email=="varkreker@gmail.com"
-      %li
-        %a{href: profiles_path} Admin
+  -# - if signed_in?
+  -#   %li
+  -#     %a{href: '/ponuka/new'} Pridaj inzerát
+  -#   %li
+  -#     %a{href: '/ponuka/manage'} Spravuj svoje inzeráty
+  -#   %li
+  -#     %a{href: signout_path, id: 'sign_out'} Odhlás sa
+  -#   -if current_user.email=="jendek.tomas@gmail.com" ||  current_user.email=="varkreker@gmail.com"
+  -#     %li
+  -#       %a{href: profiles_path} Admin
 
 
-  - else
-    %li
-      %a{href: '/auth/facebook', id: 'sign_in'} Prihlás sa cez Facebook
+  -# - else
+  -#   %li
+  -#     %a{href: '/auth/facebook', id: 'sign_in'} Prihlás sa cez Facebook
 
 
 
