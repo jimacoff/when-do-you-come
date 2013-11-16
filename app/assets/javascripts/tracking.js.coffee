@@ -70,6 +70,9 @@ $ ->
       type: 'POST',
       data: valuesToSubmit,
     }).success((result) ->
+      id = result.id
+
+      window.location = '/tracking/#{id}'
 
     )
 
