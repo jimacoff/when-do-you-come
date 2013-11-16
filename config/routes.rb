@@ -4,9 +4,11 @@ WhenDoYouCome::Application.routes.draw do
 
   resources :location
 
-  resources :tracking do
-    get 'init_route'
-    get 'update_position'
+  resource :tracking do
+    member do
+      get 'init_route'
+      get 'update_position'
+    end
   end
 
 
