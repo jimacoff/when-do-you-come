@@ -4,7 +4,9 @@ WhenDoYouCome::Application.routes.draw do
 
   get '/trackings/:id', to: 'trackings#show'
 
-  resources :locations
+  resources :locations do
+    get 'get_updated_position'
+  end
 
   resource :trackings do
     post 'init_route'
