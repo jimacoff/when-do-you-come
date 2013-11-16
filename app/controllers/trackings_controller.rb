@@ -13,6 +13,19 @@ class TrackingsController < ApplicationController
       redirect_to root_path
     else
       @position = Position.find(session[:id])
+
+
+      seconds = @position.remaining_time
+      remaining_meters = @position.remaining_m
+      total_meters = @position.total_m
+
+      @remaining_time = sec_to_hour_min(seconds)
+
+      rem = remaining_m_to_percent(remaining_meters, total_meters)
+      @remaining_m = 100-rem if rem!=100
+
+      @remaining_m = rem if rem == 100
+
     end
   end
 
