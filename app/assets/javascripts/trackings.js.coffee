@@ -71,6 +71,8 @@ $ ->
       data: valuesToSubmit,
     }).success((result) ->
 
+      window.location = "/tracking/#{result.id}"
+
     )
 
 
@@ -99,7 +101,6 @@ $ ->
     })
 
   getDistanceAndDuration = (aLatLng, bLatLng, callback) ->
-    console.log(aLatLng, bLatLng)
     map.gmap3({
       getdistance:{
         options:{

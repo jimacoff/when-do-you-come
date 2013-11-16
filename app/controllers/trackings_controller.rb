@@ -12,7 +12,6 @@ class TrackingsController < ApplicationController
 
   # Initial creating of route
   def init_route
-    puts params.to_s+"================================"
     session_id = request.session_options[:id]
 
     initial_position = Position.new(params)
@@ -21,6 +20,8 @@ class TrackingsController < ApplicationController
 
     if initial_position.save
       # sucessfull creation
+      render json: initial_position, only: ["id"]
+
     else
       # problem initializing
     end
@@ -34,6 +35,9 @@ class TrackingsController < ApplicationController
     end
 
 
+  end
+
+  def show
   end
 
 
