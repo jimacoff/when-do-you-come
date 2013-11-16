@@ -12,11 +12,16 @@
       %p.text-center
         %strong distance remaining
       .progress
-        .progress-bar.progress-bar-success{style: "width: 35%"}
-          %span.sr-only 35% Complete (success)
-        .progress-bar.progress-bar-danger{style: "width: 65%"}
-          %span.sr-only 20% Complete (warning)
-        .percentage 65%
+        .progress-bar.progress-bar-success{style: "width: #{100-@remaining_m}%"}
+          %span.sr-only
+            = @remaining_m
+            Complete (success)
+        .progress-bar.progress-bar-danger{style: "width: #{@remaining_m}%"}
+          %span.sr-only
+            = @remaining_m
+            Complete (warning)
+        .percentage
+          = @remaining_m
 
     .remaining
       %p.text-center
@@ -26,7 +31,8 @@
           %span.sr-only 50% Complete (success)
         .progress-bar.progress-bar-danger{style: "width: 50%"}
           %span.sr-only 50% Complete (warning)
-        .percentage 50%
+        .percentage
+          = @remaining_time
       %button.btn.btn-danger.btn-block.btn-lg{type: "submit"} Cancel Route
 
 
