@@ -28,6 +28,10 @@ class TrackingsController < ApplicationController
       # sucessfull creation
       session[:id] = initial_position.id
 
+      link = "locations/1"
+
+      PositionMailer.welcome_email(params[:mom_email], link).deliver
+
       render json: initial_position, only: ["id"]
 
     else
