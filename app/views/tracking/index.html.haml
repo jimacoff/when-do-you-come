@@ -1,5 +1,5 @@
 .tracking.container
-  = form_tag('/new', :method => :post, :remote => true, :class => "tracking-form") do
+  = form_tag('/new', :method => :post, :remote => true, :id => "tracking-form") do
     .row
       = label_tag('b-position', 'Where do you go')
       = text_field_tag('b-position')
@@ -10,8 +10,10 @@
       = label_tag('mom-email', 'Recipient E-mail')
       = email_field_tag('mom-email') # recipient
     .row
-      = submit_tag("Create Route")
+      = submit_tag("Create Route", id: "create-route")
 
+
+#map
 
 - content_for :js_data do
   = javascript_include_tag "https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"
