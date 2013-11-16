@@ -8,6 +8,8 @@ class TrackingController < ApplicationController
 
   # Initial creating of route
   def init_route
+    session_id = request.session_options[:id]
+
     initial_position = Position.new(params)
 
     initial_position.a_timestamp = DateTime.now
@@ -22,6 +24,7 @@ class TrackingController < ApplicationController
 
   def update_position
 
+    # set :remaining_km, :tremaining_time, :actual_pois
     if actual_position.update_attributes(:attr => '')
       # sucessfull updated
     end
