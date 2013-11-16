@@ -5,7 +5,9 @@
   .row.content
     .col-md-4.col-md-offset-2
       %h3.text-center Your friend will be here in
-      %h2.text-center 42 minutes
+      %h2.text-center
+        = @position.remaining_time / 60
+        minutes
       %p.text-center last update 30 seconds ago
       .remaining
         %p.text-center
@@ -28,8 +30,18 @@
     .col-md-4
       #map_canvas
 
-
 = @position.inspect
 
 - content_for :js_data do
+  %div{id: "js-data",
+    data: { aLat: @position.a_poi_lat,
+          aLng: @position.a_poi_lng,
+          bLat: @position.b_poi_lat,
+          bLng: @position.b_poi_lng,
+          actualLat: @position.actual_poi_lat,
+          actualLng: @position.actual_poi_lng}}
+
+
+- content_for :js_data do
+  = javascript_include_tag "https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"
   = javascript_include_tag "locations"
