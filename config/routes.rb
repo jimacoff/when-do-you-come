@@ -1,12 +1,12 @@
 WhenDoYouCome::Application.routes.draw do
 
-  root :to => "tracking#index"
+  root :to => "trackings#index"
 
-  resources :location
+  resources :locations
 
-  resource :tracking do
+  resource :trackings do
     member do
-      get 'init_route'
+      post 'init_route'
       get 'update_position'
     end
   end

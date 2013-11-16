@@ -1,5 +1,5 @@
 .tracking.container
-  = form_tag('/new', :method => :post, :remote => true, :id => "tracking-form") do
+  %form#trackings-form{:method => "get"}
     .row
       = label_tag('b-position', 'Where do you go')
       = text_field_tag('b-position')
@@ -17,4 +17,4 @@
 
 - content_for :js_data do
   = javascript_include_tag "https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"
-  = javascript_include_tag "tracking"
+  = javascript_include_tag "trackings"

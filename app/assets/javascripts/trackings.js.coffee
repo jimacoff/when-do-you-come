@@ -7,7 +7,7 @@ $ ->
 
   # Initializing part
   #
-  trackingForm = $('#tracking-form')
+  trackingForm = $('#trackings-form')
   map = $('#map')
 
   trackingForm.on('submit', (event) ->
@@ -66,7 +66,7 @@ $ ->
     valuesToSubmit = $.param(dataAsObject)
 
     $.ajax({
-      url: '/tracking/init_route', # sumbits it to the given url of the form
+      url: '/trackings/init_route', # sumbits it to the given url of the form
       type: 'POST',
       data: valuesToSubmit,
     }).success((result) ->

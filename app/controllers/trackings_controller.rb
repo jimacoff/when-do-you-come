@@ -1,4 +1,4 @@
-class TrackingController < ApplicationController
+class TrackingsController < ApplicationController
 
   def index
     respond_to do |format|
@@ -8,6 +8,7 @@ class TrackingController < ApplicationController
 
   # Initial creating of route
   def init_route
+    puts params.to_s+"================================"
     session_id = request.session_options[:id]
 
     initial_position = Position.new(params)
