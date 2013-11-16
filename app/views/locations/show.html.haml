@@ -1,4 +1,34 @@
-toto je view pre cloveka, ktory sleduje toho, kto cestuje
+.container
+  .row.header
+    .col-md-12
+      %h1 Are We  There Yet?
+  .row.content
+    .col-md-4.col-md-offset-2
+      %h3.text-center Your friend will be here in
+      %h2.text-center 42 minutes
+      %p.text-center last update 30 seconds ago
+      .remaining
+        %p.text-center
+          %strong distance remaining
+        .progress
+          .progress-bar.progress-bar-success{style: "width: 35%"}
+            %span.sr-only 35% Complete (success)
+          .progress-bar.progress-bar-danger{style: "width: 65%"}
+            %span.sr-only 20% Complete (warning)
+          .percentage 65%
+      .remaining
+        %p.text-center
+          %strong time remaining
+        .progress
+          .progress-bar.progress-bar-success{style: "width: 50%"}
+            %span.sr-only 50% Complete (success)
+          .progress-bar.progress-bar-danger{style: "width: 50%"}
+            %span.sr-only 50% Complete (warning)
+          .percentage 50%
+    .col-md-4
+      #map_canvas
+
+
 = @position.inspect
 
 - content_for :js_data do

@@ -1,11 +1,8 @@
 class LocationsController < ApplicationController
 
   def show
-    #get session id
-
-    #get route position
-    @position = Position.find(params[:id]) # TODO find by session id - need to change schema
-
+    #@position = Position.find(params[:id]) # TODO find by session id - need to change schema
+    @position = Position.find(1)
 
     respond_to do |format|
       format.html
