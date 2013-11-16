@@ -5,6 +5,7 @@ $ = jQuery
 
 $ ->
 
+  reloadingTime = 10
 
   # Functioning part
 
@@ -120,7 +121,10 @@ $ ->
       data: valuesToSubmit,
     }).success((result) ->
 
-      console.log('data has been updated')
+      if (result.status == 'OK')
+        console.log('data has been updated')
+      else if (result.status == "NOT OK")
+        console.log('data has NOT been updated')
 
     )
 
@@ -132,7 +136,6 @@ $ ->
 
       aLat = aLatLng.ob
       aLng = aLatLng.pb
-
 
       getDistanceAndDuration(aLatLng, bLatLng, (arrayOfDisAndDur) ->
         if (!arrayOfDisAndDur)
@@ -152,7 +155,7 @@ $ ->
 
         setTimeout(() ->
           reloadGeolocation(bLatLng, positionId)
-        , 10*1000)
+        , reloadingTime*1000)
       )
     )
 
@@ -181,7 +184,7 @@ $ ->
 
     setTimeout(() ->
       reloadGeolocation(bLatLng, positionId)
-    , 10*1000)
+    , reloadingTime*1000)
 
 
 
