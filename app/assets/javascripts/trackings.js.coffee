@@ -71,7 +71,7 @@ $ ->
       data: valuesToSubmit,
     }).success((result) ->
 
-      window.location = "/tracking/#{result.id}"
+      window.location = "/trackings/#{result.id}"
 
     )
 
