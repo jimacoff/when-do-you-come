@@ -2,28 +2,22 @@
 #= require gmap3.min
 
 $('#map').gmap3({
-  getroute:{
+  getdistance:{
     options:{
-      origin:"48 Pirrama Road, Pyrmont NSW",
-      destination:"Bondi Beach, NSW",
-      travelMode: google.maps.DirectionsTravelMode.DRIVING
+      origins:["Zálesie, Slovakia"],
+      destinations:["Bratislava, Slovakia"],
+      travelMode: google.maps.TravelMode.DRIVING
     },
-    callback: (results) ->
-      if (!results)
-        return
+    callback: (results, status) ->
+      html = ""
+      if (results)
+        distance = results.rows[0].elements[0].distance.value
+        duration = results.rows[0].elements[0].duration.value
+        console.log(distance)
+        console.log(duration / 60)
+      else
+        html = "error"
 
-      $(this).gmap3({
-        map:{
-          options:{
-            zoom: 13,
-            center: [-33.879, 151.235]
-          }
-        },
-        directionsrenderer:{
-          options:{
-            directions:results
-          }
-        }
-      })
-  }
+      $("#distance").html( html )
+    }
 })
