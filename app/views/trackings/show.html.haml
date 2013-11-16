@@ -1,1 +1,33 @@
+.row
+  .col-md-8.col-md-offset-2
+    %h1 When Do U Come?
+    %p.text-center
+      %span.glyphicon.glyphicon-refresh.animate
+    %p.text-center
+      Updating Data.
+      = succeed "Do" do
+        %br/
+
+    .remaining
+      %p.text-center
+        %strong distance remaining
+      .progress
+        .progress-bar.progress-bar-success{style: "width: 35%"}
+          %span.sr-only 35% Complete (success)
+        .progress-bar.progress-bar-danger{style: "width: 65%"}
+          %span.sr-only 20% Complete (warning)
+        .percentage 65%
+
+    .remaining
+      %p.text-center
+        %strong time remaining
+      .progress
+        .progress-bar.progress-bar-success{style: "width: 50%"}
+          %span.sr-only 50% Complete (success)
+        .progress-bar.progress-bar-danger{style: "width: 50%"}
+          %span.sr-only 50% Complete (warning)
+        .percentage 50%
+
+
+
 =@position.inspect

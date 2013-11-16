@@ -1,17 +1,14 @@
-.tracking.container
-  %form#trackings-form{:method => "get"}
-    .row
-      = label_tag('b-position', 'Where do you go')
-      = text_field_tag('b-position')
-    .row
-      = label_tag('tracker-id', 'Your Name / E-Mail')
-      = text_field_tag('tracker-id') # name or email or whatever
-    .row
-      = label_tag('mom-email', 'Recipient E-mail')
-      = email_field_tag('mom-email') # recipient
-    .row
-      = submit_tag("Create Route", id: "create-route")
+.container
+  .row
+    .col-md-8.col-md-offset-2
+      %h1 When Do U Come?
 
+      %form.route-create#trackings-form{method: "get", role: "form"}
+        %input.form-control.input-lg{id: "b-position", name: "b-position", placeholder: "Where are you going?", required: "", type: "text"}/
+        %input.form-control.input-lg{id: "tracker-id", name: "tracker-id", placeholder: "Whats your name?", required: "", type: "text"}/
+        %input.form-control.input-lg.last-input{id: "mom-email", name: "mom-email", placeholder: "Recipients email?", required: "", type: "email"}/
+
+        %button.btn.btn-primary.btn-block.btn-lg{type: "submit", id: "create-route"} Submit
 
 - if @initialPosition
   = @initialPosition.inspect
