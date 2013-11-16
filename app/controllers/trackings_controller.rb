@@ -7,11 +7,13 @@ class TrackingsController < ApplicationController
   end
 
   def show
-    if !session.has_key?(:id)
-      redirect_to root_path
-    end
+    session["init"] = true
 
-    @position = Position.find(session[:id])
+    if session[:id].nil?
+      redirect_to root_path
+    else
+      @position = Position.find(session[:id])
+    end
   end
 
   # Initial creating of route
