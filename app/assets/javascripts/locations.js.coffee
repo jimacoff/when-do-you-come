@@ -37,8 +37,11 @@ $ ->
           markers: markers,
           autofit: true
         })
-      else
-        console.log('not changed')
+
+      $('#remaining-time').text(result.remaining_time)
+      $('#remaining-m-100').css('width', "#{100 - result.remaining_m}%")
+      $('#remaining-m').css('width', "#{result.remaining_m}%")
+      $('#remaining-m-percentage').text("#{result.remaining_m}%")
 
       setTimeout(() ->
         updateActualPosition(markers)
