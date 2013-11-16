@@ -8,7 +8,7 @@ WhenDoYouCome::Application.routes.draw do
 
   resource :trackings do
     post 'init_route'
-    get 'update_position'
+    post 'update_position'
   end
 
 

@@ -37,10 +37,32 @@ class TrackingsController < ApplicationController
 
   def update_position
 
-    # set :remaining_km, :tremaining_time, :actual_pois
-    if actual_position.update_attributes(:attr => '')
-      # sucessfull updated
+    actual_position = ""
+    session["init"] = true
+
+    if session[:id].nil?
+      redirect_to root_path
+    else
+      actual_position = Position.find(session[:id])
     end
+
+    status = ""
+
+    # set :remaining_km, :tremaining_time, :actual_pois
+    if actual_position.update_attributes(
+      :remaining_m => params[:remaining_m],
+      :actual_poi_lat => params[:actual_poi_lat],
+      :actual_poi_lng => params[:actual_poi_lng],
+      :remaining_time => params[:remaining_time]
+      )
+
+      status = "OK"
+      # sucessfull updated
+    else
+      status = "NOT OK"
+    end
+
+    render json: {:status => status}
 
 
   end
