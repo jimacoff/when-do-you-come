@@ -5,22 +5,22 @@
   .row.content
     .col-md-4.col-md-offset-2
       %h3.text-center Your friend will be here in
-      %h2.text-center
+      %h2#remaining-time.text-center
         = @remaining_time
       %p.text-center last update 30 seconds ago
       .remaining
         %p.text-center
           %strong distance remaining
         .progress
-          .progress-bar.progress-bar-success{style: "width: #{100-@remaining_m}%"}
+          #remaining-m-100.progress-bar.progress-bar-success{style: "width: #{100-@remaining_m}%"}
             %span.sr-only
               = @remaining_m
               Complete (success)
-          .progress-bar.progress-bar-danger{style: "width: #{@remaining_m}%"}
+          #remaining-m.progress-bar.progress-bar-danger{style: "width: #{@remaining_m}%"}
             %span.sr-only
               = @remaining_m
               Complete (warning)
-          .percentage
+          #remaining-m-percentage.percentage
             = @remaining_m.to_s+" %"
     .col-md-4
       #map_canvas

@@ -20,8 +20,8 @@ $ ->
       url: "/locations/#{id}/get_updated_position",
       type: 'GET'
     }).success((result) ->
-      newActualLat = result.actual_poi_lat
-      newActualLng = result.actual_poi_lng
+      newActualLat = result.actualPosition.actual_poi_lat
+      newActualLng = result.actualPosition.actual_poi_lng
 
       actualMarker = markers[2]
 
@@ -37,8 +37,11 @@ $ ->
           markers: markers,
           autofit: true
         })
-      else
-        console.log('not changed')
+
+      $('#remaining-time').text(result.remaining_time)
+      $('#remaining-m-100').css('width', "#{100 - result.remaining_m}%")
+      $('#remaining-m').css('width', "#{result.remaining_m}%")
+      $('#remaining-m-percentage').text("#{result.remaining_m}%")
 
       setTimeout(() ->
         updateActualPosition(markers)
