@@ -6,9 +6,13 @@ class TrackingsController < ApplicationController
     end
   end
 
+  def show
+    @position = Position.find(params[:id])
+  end
+
   # Initial creating of route
   def init_route
-    session_id = request.session_options[:id]
+    #session_id = request.session_options[:id]
 
     initial_position = Position.new(params)
 
@@ -31,9 +35,6 @@ class TrackingsController < ApplicationController
     end
 
 
-  end
-
-  def show
   end
 
 
