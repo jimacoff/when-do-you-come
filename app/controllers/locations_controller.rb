@@ -2,8 +2,7 @@ class LocationsController < ApplicationController
 
   def show
     #@position = Position.find(params[:id]) # TODO find by session id - need to change schema
-    @position = Position.find(11)
-
+    @position = Position.find(params[:id])
 
     seconds = @position.remaining_time
     remaining_meters = @position.remaining_m
