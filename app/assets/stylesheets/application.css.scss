@@ -2,3 +2,92 @@
 
 @import "tracking";
 @import "location";
+
+
+#map {
+  width: 500px;
+  height: 500px;
+}
+
+
+
+body {
+  font-family: 'Raleway', sans-serif;
+}
+
+h1 {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 400;
+  text-align: center;
+  margin: 1em;
+}
+
+/*for testing purpose only*/
+.row {
+  /*border-bottom: thin solid #666;*/
+}
+/*end*/
+
+.route-create {
+  margin: 1em 0;
+}
+.route-create input {
+  border-radius: 0;
+  border-top-width: 0;
+  text-align: center;
+}
+.route-create input:first-child {
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  border-top-width: 1px;
+}
+input.last-input {
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+
+button {
+  margin-top: 2em;
+}
+
+.footer {
+  text-align: center;
+  margin-top: 2em;
+}
+.glyphicon {
+  font-size: 2em;
+}
+@-webkit-keyframes rotate {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+.animate
+  {
+  -webkit-animation-name:             rotate;
+  -webkit-animation-duration:         2s;
+  -webkit-animation-iteration-count:  infinite;
+  -webkit-animation-timing-function: linear;
+}
+
+.remaining {
+  margin: 2em 0;
+}
+.percentage {
+  position: relative;
+  text-align: center;
+  top: -25px;
+  color: white;
+  font-weight: bold;
+}
+.progress {
+  height: 30px;
+}
+
+#map_canvas {
+  width: 100%;
+  height: 300px;
+}
