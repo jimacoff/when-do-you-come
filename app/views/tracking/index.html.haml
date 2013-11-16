@@ -1,8 +1,18 @@
-toto je view pre cloveka, ktory niekam cestuje
+.tracking.container
+  = form_tag('/new', :method => :post, :remote => true, :class => "tracking-form") do
+    .row
+      = label_tag('b-position', 'Where do you go')
+      = text_field_tag('b-position')
+    .row
+      = label_tag('tracker-id', 'Your Name / E-Mail')
+      = text_field_tag('tracker-id') # name or email or whatever
+    .row
+      = label_tag('mom-email', 'Recipient E-mail')
+      = email_field_tag('mom-email') # recipient
+    .row
+      = submit_tag("Create Route")
 
-#map
-#distance
 
 - content_for :js_data do
-    = javascript_include_tag "https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"
-    = javascript_include_tag "tracking"
+  = javascript_include_tag "https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"
+  = javascript_include_tag "tracking"
