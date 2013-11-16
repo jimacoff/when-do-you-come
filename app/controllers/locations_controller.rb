@@ -22,8 +22,21 @@ class LocationsController < ApplicationController
   def get_updated_position
     @actualPosition = Position.find(params[:location_id])
 
-    render json: @actualPosition, only: [
-      "actual_poi_lat", "actual_poi_lng", "remaining_m", "remaining_time"
-    ]
+    seconds = @actualPosition.remaining_time
+    remaining_meters = @actualPosition.remaining_m
+    total_meters = @actualPosition.total_m
+
+    @remaining_time = sec_to_hour_min(seconds)
+
+    rem = remaining_m_to_percent(remaining_meters, total_meters)
+    @remaining_m = 100-rem if rem!=100
+
+    @remaining_m = rem if rem == 100
+
+    render json: {
+      actualPosition: @actualPosition,
+      remaining_m: @remaining_m,
+      remaining_time: @remaining_time
+    }
   end
 end

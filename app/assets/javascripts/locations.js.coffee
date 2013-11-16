@@ -20,8 +20,8 @@ $ ->
       url: "/locations/#{id}/get_updated_position",
       type: 'GET'
     }).success((result) ->
-      newActualLat = result.actual_poi_lat
-      newActualLng = result.actual_poi_lng
+      newActualLat = result.actualPosition.actual_poi_lat
+      newActualLng = result.actualPosition.actual_poi_lng
 
       actualMarker = markers[2]
 
