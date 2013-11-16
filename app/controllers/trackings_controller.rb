@@ -1,4 +1,4 @@
-class TrackingController < ApplicationController
+class TrackingsController < ApplicationController
 
   def index
     respond_to do |format|
@@ -8,10 +8,12 @@ class TrackingController < ApplicationController
 
   # Initial creating of route
   def init_route
+    puts params.to_s+"================================"
+    session_id = request.session_options[:id]
+
     initial_position = Position.new(params)
 
     initial_position.a_timestamp = DateTime.now
-    initial_position.remaining_time = convert_seconts_to_time(60)
 
     if initial_position.save
       # sucessfull creation
@@ -24,6 +26,7 @@ class TrackingController < ApplicationController
 
   def update_position
 
+    # set :remaining_km, :tremaining_time, :actual_pois
     if actual_position.update_attributes(:attr => '')
       # sucessfull updated
     end

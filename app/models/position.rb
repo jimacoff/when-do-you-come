@@ -1,5 +1,5 @@
 class Position < ActiveRecord::Base
-  attr_accessible :total_km, :remaining_km,
+  attr_accessible :total_m, :remaining_m,
                   :a_poi_lat,
                   :a_poi_lng,
                   :b_poi_lat,

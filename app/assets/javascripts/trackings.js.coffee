@@ -7,7 +7,7 @@ $ ->
 
   # Initializing part
   #
-  trackingForm = $('#tracking-form')
+  trackingForm = $('#trackings-form')
   map = $('#map')
 
   trackingForm.on('submit', (event) ->
@@ -46,8 +46,8 @@ $ ->
           duration = arrayOfDisAndDur[1]
 
           saveDataToDB({
-            total_km: distance,
-            remaining_km: distance,
+            total_m: distance,
+            remaining_m: distance,
             a_poi_lat: aLat,
             a_poi_lng: aLng,
             b_poi_lat: bLat,
@@ -66,7 +66,7 @@ $ ->
     valuesToSubmit = $.param(dataAsObject)
 
     $.ajax({
-      url: '/tracking/init_route', # sumbits it to the given url of the form
+      url: '/trackings/init_route', # sumbits it to the given url of the form
       type: 'POST',
       data: valuesToSubmit,
     }).success((result) ->
