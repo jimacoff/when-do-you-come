@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   helper_method :convert_seconts_to_time
 
   def convert_seconts_to_time(seconds)
-    Time.at(seconds).gmtime.strftime('%R:%S')
+    Time.at(seconds).gmtime.strftime('%R:%S').to_i
   end
 
 end

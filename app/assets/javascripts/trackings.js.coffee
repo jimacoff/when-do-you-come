@@ -46,8 +46,8 @@ $ ->
           duration = arrayOfDisAndDur[1]
 
           saveDataToDB({
-            total_km: distance,
-            remaining_km: distance,
+            total_m: distance,
+            remaining_m: distance,
             a_poi_lat: aLat,
             a_poi_lng: aLng,
             b_poi_lat: bLat,

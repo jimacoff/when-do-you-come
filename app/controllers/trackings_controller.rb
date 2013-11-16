@@ -14,7 +14,6 @@ class TrackingsController < ApplicationController
     initial_position = Position.new(params)
 
     initial_position.a_timestamp = DateTime.now
-    initial_position.remaining_time = convert_seconts_to_time(60)
 
     if initial_position.save
       # sucessfull creation

@@ -14,8 +14,8 @@
 ActiveRecord::Schema.define(version: 20131115220346) do
 
   create_table "positions", force: true do |t|
-    t.integer  "total_km"
-    t.integer  "remaining_km"
+    t.integer  "total_m"
+    t.integer  "remaining_m"
     t.datetime "a_timestamp"
     t.integer  "remaining_time"
     t.decimal  "a_poi_lat"
