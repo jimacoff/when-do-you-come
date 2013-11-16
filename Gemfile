@@ -27,6 +27,7 @@ gem 'compass'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 
+gem 'protected_attributes'
 
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
