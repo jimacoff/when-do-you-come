@@ -30,8 +30,6 @@
     .col-md-4
       #map_canvas
 
-= @position.inspect
-
 - content_for :js_data do
   %div{id: "js-data",
     data: { aLat: @position.a_poi_lat,
@@ -39,7 +37,8 @@
           bLat: @position.b_poi_lat,
           bLng: @position.b_poi_lng,
           actualLat: @position.actual_poi_lat,
-          actualLng: @position.actual_poi_lng}}
+          actualLng: @position.actual_poi_lng,
+          id: @position.id}}
 
 
 - content_for :js_data do

@@ -9,7 +9,47 @@ $ ->
   # Load data from html div's data
   js_data = $('#js-data')
 
+  refreshInterval = 10 # in seconds
 
+  # Functions' stuff
+
+  updateActualPosition = (markers) ->
+    id = js_data.data('id')
+
+    $.ajax({
+      url: "/locations/#{id}/get_updated_position",
+      type: 'GET'
+    }).success((result) ->
+      newActualLat = result.actual_poi_lat
+      newActualLng = result.actual_poi_lng
+
+      actualMarker = markers[2]
+
+      if (newActualLat != actualMarker.latLng[0] or newActualLng != actualMarker.latLng[1])
+        markers.pop()
+        markers.push({
+          latLng: [newActualLat, newActualLng],
+          options:{icon: map.iconMarkerGenerator('b-marker', 35, 35)}
+        })
+
+        map.reloadMapWithNewMarkers({
+          container: $('#map_canvas'),
+          markers: markers,
+          autofit: true
+        })
+      else
+        console.log('not changed')
+
+      setTimeout(() ->
+        updateActualPosition(markers)
+      , refreshInterval * 1000)
+
+
+
+
+    )
+
+  # Init stuff
 
   map = new Map()
   map.createBasicMap($('#map_canvas'), [48.12, 17.12], 15)
@@ -32,9 +72,18 @@ $ ->
     latLng: [bLat, bLng]
   })
 
+  actualLat = js_data.data('actuallat')
+  actualLng = js_data.data('actuallng')
+
+  markers.push({
+    latLng: [actualLat, actualLng],
+    options:{icon: map.iconMarkerGenerator('b-marker', 35, 35)}
+  })
+
   map.reloadMapWithNewMarkers({
     container: $('#map_canvas'),
     markers: markers,
     autofit: true
   })
 
+  updateActualPosition(markers)
