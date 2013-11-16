@@ -26,12 +26,7 @@
     .remaining
       %p.text-center
         %strong time remaining
-      .progress
-        .progress-bar.progress-bar-success{style: "width: 50%"}
-          %span.sr-only 50% Complete (success)
-        .progress-bar.progress-bar-danger{style: "width: 50%"}
-          %span.sr-only 50% Complete (warning)
-        .percentage
+        %p.text-center
           = @remaining_time
       %button.btn.btn-danger.btn-block.btn-lg{type: "submit"} Cancel Route
 
