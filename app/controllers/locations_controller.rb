@@ -10,7 +10,10 @@ class LocationsController < ApplicationController
 
     @remaining_time = sec_to_hour_min(seconds)
 
-    @remaining_m = 100-remaining_m_to_percent(remaining_meters, total_meters)
+    rem = remaining_m_to_percent(remaining_meters, total_meters)
+    @remaining_m = 100-rem if rem!=100
+
+    @remaining_m = rem if rem == 100
 
     respond_to do |format|
       format.html

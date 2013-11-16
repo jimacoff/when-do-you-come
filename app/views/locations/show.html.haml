@@ -25,8 +25,6 @@
     .col-md-4
       #map_canvas
 
-= @position.inspect
-
 - content_for :js_data do
   %div{id: "js-data",
     data: { aLat: @position.a_poi_lat,
