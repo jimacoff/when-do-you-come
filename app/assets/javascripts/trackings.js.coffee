@@ -69,9 +69,9 @@ $ ->
       url: '/trackings/init_route', # sumbits it to the given url of the form
       type: 'POST',
       data: valuesToSubmit,
-    }).success((result) ->
+    }).success(() ->
 
-      window.location = "/trackings/#{result.id}"
+      window.location = "/trackings"
 
     )
 
