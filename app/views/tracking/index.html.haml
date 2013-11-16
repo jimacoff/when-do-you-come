@@ -13,6 +13,9 @@
       = submit_tag("Create Route", id: "create-route")
 
 
+- if @initialPosition
+  = @initialPosition.inspect
+
 #map
 
 - content_for :js_data do

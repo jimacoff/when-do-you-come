@@ -15,6 +15,9 @@ class TrackingController < ApplicationController
 
     if initial_position.save
       # sucessfull creation
+      #
+      render "index", initialPosition: initial_position
+
     else
       # problem initializing
     end
