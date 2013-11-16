@@ -20,8 +20,29 @@ $ ->
   # Functioning part
 
   createRoute = () ->
-    getLatLng(trackingForm.find('#b-position').val(), (latLng) ->
-      console.log(latLng)
+    getLatLng(trackingForm.find('#b-position').val(), (bLatLng) ->
+      if (!bLatLng)
+        console.log('zla b-adresa')
+        return
+
+      bLat = bLatLng.ob
+      bLng = bLatLng.pb
+
+      getGeolocation((aLatLng) ->
+        if (!aLatLng)
+          console.log('nepovolil si lokalizovanie tvojej polohy')
+          return
+
+        aLat = aLatLng.ob
+        aLng = aLatLng.pb
+
+
+        getDistanceAndDuration(aLatLng, bLatLng, () ->
+
+        )
+      )
+
+
     )
 
     valuesToSubmit = ""
@@ -44,29 +65,43 @@ $ ->
             latLng = result[0].geometry.location
             callback(latLng)
           else
-            callback(0)
+            callback(false)
       }
+    })
+
+  getGeolocation = (callback) ->
+    map.gmap3({
+      getgeoloc:{
+        callback : (latLng) ->
+          if (latLng)
+            callback(latLng)
+          else
+            callback(false)
+      }
+    })
+
+  getDistanceAndDuration = (aLatLng, bLatLng, callback) ->
+    console.log(aLatLng, bLatLng)
+    map.gmap3({
+      getdistance:{
+        options:{
+          origins:[aLatLng],
+          destinations:[bLatLng],
+          travelMode: google.maps.TravelMode.DRIVING
+        },
+        callback: (results, status) ->
+          html = ""
+          if (results)
+            distance = results.rows[0].elements[0].distance.value
+            duration = results.rows[0].elements[0].duration.value
+            console.log(distance)
+            console.log(duration / 60)
+          else
+            console.log('error')
+
+        }
     })
 
 
 
-  $('#map').gmap3({
-    getdistance:{
-      options:{
-        origins:["Zálesie, Slovakia"],
-        destinations:["Bratislava, Slovakia"],
-        travelMode: google.maps.TravelMode.DRIVING
-      },
-      callback: (results, status) ->
-        html = ""
-        if (results)
-          distance = results.rows[0].elements[0].distance.value
-          duration = results.rows[0].elements[0].duration.value
-          console.log(distance)
-          console.log(duration / 60)
-        else
-          html = "error"
 
-        $("#distance").html( html )
-      }
-  })
