@@ -7,8 +7,13 @@ class TrackingsController < ApplicationController
   end
 
   def show
+    session["init"] = true
 
-    @position = Position.find(session[:id])
+    if session[:id].nil?
+      redirect_to root_path
+    else
+      @position = Position.find(session[:id])
+    end
   end
 
   # Initial creating of route
@@ -22,6 +27,8 @@ class TrackingsController < ApplicationController
     if initial_position.save
       # sucessfull creation
       session[:id] = initial_position.id
+
+      render json: initial_position, only: ["id"]
 
     else
       # problem initializing

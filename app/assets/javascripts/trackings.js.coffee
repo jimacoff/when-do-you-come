@@ -5,17 +5,6 @@ $ = jQuery
 
 $ ->
 
-  # Initializing part
-  #
-  trackingForm = $('#trackings-form')
-  map = $('#map')
-
-  trackingForm.on('submit', (event) ->
-    createRoute()
-
-    return false
-  )
-
 
   # Functioning part
 
@@ -69,11 +58,12 @@ $ ->
       url: '/trackings/init_route', # sumbits it to the given url of the form
       type: 'POST',
       data: valuesToSubmit,
-    }).success(() ->
+    }).success((result) ->
 
-      window.location = "/trackings"
+      window.location = "/trackings/"
 
     )
+
 
 
   getLatLng = (address, callback) ->
@@ -121,6 +111,77 @@ $ ->
         }
     })
 
+  updateReloadedDataToDB = (dataAsObject) ->
+    valuesToSubmit = $.param(dataAsObject)
+
+    $.ajax({
+      url: '/trackings/update_position',
+      type: 'POST',
+      data: valuesToSubmit,
+    }).success((result) ->
+
+      console.log('data has been updated')
+
+    )
+
+  reloadGeolocation = (bLatLng, positionId) ->
+    getGeolocation((aLatLng) ->
+      if (!aLatLng)
+        console.log('nepovolil si lokalizovanie tvojej polohy')
+        return
+
+      aLat = aLatLng.ob
+      aLng = aLatLng.pb
+
+
+      getDistanceAndDuration(aLatLng, bLatLng, (arrayOfDisAndDur) ->
+        if (!arrayOfDisAndDur)
+          console.log('neda sa najst vzdialenost a cas')
+          return
+
+        distance = arrayOfDisAndDur[0]
+        duration = arrayOfDisAndDur[1]
+
+        updateReloadedDataToDB({
+          id: positionId,
+          remaining_m: distance,
+          actual_poi_lat: aLat,
+          actual_poi_lng: aLng,
+          remaining_time: duration
+        })
+
+        setTimeout(() ->
+          reloadGeolocation(bLatLng, positionId)
+        , 10*1000)
+      )
+    )
+
+  # Initializing part
+
+  trackingForm = $('#trackings-form')
+  map = $('#map')
+
+  # on index page
+  if (trackingForm.length)
+    trackingForm.on('submit', (event) ->
+      createRoute()
+      return false
+    )
+
+  # on tracking page
+  if ($('.tracking-reload').length)
+    jsData = $('#js-data')
+
+    bLat = jsData.data('blat')
+    bLng = jsData.data('blng')
+    positionId = jsData.data('id')
+
+    bLatLng = {lat: bLat, lng: bLng}
+
+
+    setTimeout(() ->
+      reloadGeolocation(bLatLng, positionId)
+    , 10*1000)
 
 
 

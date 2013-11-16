@@ -1,1 +1,12 @@
-=@position.inspect
+.tracking-reload.container
+=@position.b_poi_lng
+
+- content_for :js_data do
+  %div{id: "js-data",
+        data: { bLat: @position.b_poi_lat,
+          bLng: @position.b_poi_lng,
+          id: @position.id}}
+
+- content_for :js_data do
+  = javascript_include_tag "https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"
+  = javascript_include_tag "trackings"
