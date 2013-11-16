@@ -6,6 +6,10 @@ class TrackingsController < ApplicationController
     end
   end
 
+  def show
+
+  end
+
   # Initial creating of route
   def init_route
     puts params.to_s+"================================"
