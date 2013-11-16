@@ -37,15 +37,33 @@ $ ->
         aLng = aLatLng.pb
 
 
-        getDistanceAndDuration(aLatLng, bLatLng, () ->
+        getDistanceAndDuration(aLatLng, bLatLng, (arrayOfDisAndDur) ->
+          if (!arrayOfDisAndDur)
+            console.log('neda sa najst vzdialenost a cas')
+            return
 
+          distance = arrayOfDisAndDur[0]
+          duration = arrayOfDisAndDur[1]
+
+          saveDataToDB({
+            total_km: distance,
+            remaining_km: distance,
+            a_poi_lat: aLat,
+            a_poi_lng: aLng,
+            b_poi_lat: bLat,
+            b_poi_lng: bLng,
+            actual_poi_lat: aLat,
+            actual_poi_lng: aLng,
+            remaining_time: duration
+          })
+
+          )
         )
       )
 
 
-    )
-
-    valuesToSubmit = ""
+  saveDataToDB = (dataAsObject) ->
+    valuesToSubmit = $.param(dataAsObject)
 
     $.ajax({
       url: '/tracking/init_route', # sumbits it to the given url of the form
@@ -94,10 +112,10 @@ $ ->
           if (results)
             distance = results.rows[0].elements[0].distance.value
             duration = results.rows[0].elements[0].duration.value
-            console.log(distance)
-            console.log(duration / 60)
+
+            callback([distance, duration])
           else
-            console.log('error')
+            callback(false)
 
         }
     })
