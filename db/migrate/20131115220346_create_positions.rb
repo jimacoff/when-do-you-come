@@ -4,7 +4,7 @@ class CreatePositions < ActiveRecord::Migration
       t.integer :total_km
       t.integer :remaining_km
       t.timestamp :a_timestamp
-      t.time :remaining_time
+      t.integer :remaining_time
       t.decimal :a_poi_lat, :precision => 10, :scale => 7
       t.decimal :a_poi_lng, :precision => 10, :scale => 7
       t.decimal :b_poi_lat, :precision => 10, :scale => 7
