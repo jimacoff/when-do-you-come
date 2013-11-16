@@ -41,7 +41,7 @@ class TrackingsController < ApplicationController
       # sucessfull creation
       session[:id] = initial_position.id
 
-      link = "www.pinker.cz:3000/locations/"+initial_position.id
+      link = "www.pinker.cz:3000/locations/"+initial_position.id.to_s
 
       PositionMailer.welcome_email(params[:mom_email], link).deliver
 
