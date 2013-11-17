@@ -14,7 +14,7 @@
       .progress
         .progress-bar.progress-bar-success{style: "width: #{100-@remaining_m}%"}
           %span.sr-only
-            = @remaining_m
+            = 100-@remaining_m
             Complete (success)
         .progress-bar.progress-bar-danger{style: "width: #{@remaining_m}%"}
           %span.sr-only

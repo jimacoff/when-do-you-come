@@ -23,6 +23,8 @@ class ApplicationController < ActionController::Base
   end
 
   def remaining_m_to_percent(remaining_meters, total_meters)
+    puts "-citatel "+remaining_meters.to_s
+    puts "-menovatel "+total_meters.to_s
     return ((remaining_meters.to_d / total_meters.to_d)*100).round
   end
 
