@@ -12,15 +12,15 @@
       %p.text-center
         %strong distance remaining
       .progress
-        .progress-bar.progress-bar-success{style: "width: #{100-@remaining_m}%"}
+        #remaining-m-100.progress-bar.progress-bar-success{style: "width: #{100-@remaining_m}%"}
           %span.sr-only
             = 100-@remaining_m
             Complete (success)
-        .progress-bar.progress-bar-danger{style: "width: #{@remaining_m}%"}
+        #remaining-m.progress-bar.progress-bar-danger{style: "width: #{@remaining_m}%"}
           %span.sr-only
             = @remaining_m
             Complete (warning)
-        .percentage
+        #remaining-m-percentage.percentage
           = @remaining_m
 
     .remaining
@@ -33,6 +33,7 @@
 
 
 #map
+#demo-day
 - content_for :js_data do
   %div{id: "js-data",
         data: { bLat: @position.b_poi_lat,

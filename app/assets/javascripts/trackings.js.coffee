@@ -7,6 +7,22 @@ $ ->
 
   reloadingTime = 10
 
+  bLatLng = {lat: bLat, lng: bLng}
+
+  fakeData = [
+    {lat: 48.152956001341245, lng: 17.071746853967277},
+    {lat: 48.14801673924581, lng: 17.075571684022513},
+    {lat: 48.14293851848995, lng: 17.091986803193656}
+  ]
+
+  fakeIterator = 0
+
+  if ($('.tracking-reload').length)
+    remainingTime = $('#remaining-time')
+    remainingM100 = $('#remaining-m-100')
+    remainingM0 = $('#remaining-m')
+    remainingPercentage = $('#remaining-m-percentage')
+
   # Functioning part
 
   createRoute = () ->
@@ -124,9 +140,44 @@ $ ->
 
       if (result.status == 'OK')
         console.log('data has been updated')
+
+        remainingM = result.remaining_m
+
+        remainingTime.text(result.remaining_time)
+        remainingM100.css('width', "#{100 - remainingM}%")
+        remainingM0.css('width', "#{remainingM}%")
+        remainingPercentage.text("#{remainingM}%")
+
       else if (result.status == "NOT OK")
         console.log('data has NOT been updated')
 
+    )
+
+  fakeDataForDemoDay = (bLatLng, positionId) ->
+    aLatLng = fakeData[fakeIterator % fakeData.length]
+    fakeIterator++
+    aLat = aLatLng.lat
+    aLng = aLatLng.lng
+
+    getDistanceAndDuration(aLatLng, bLatLng, (arrayOfDisAndDur) ->
+      if (!arrayOfDisAndDur)
+        console.log('neda sa najst vzdialenost a cas')
+        return
+
+      distance = arrayOfDisAndDur[0]
+      duration = arrayOfDisAndDur[1]
+
+      updateReloadedDataToDB({
+        id: positionId,
+        remaining_m: distance,
+        actual_poi_lat: aLat,
+        actual_poi_lng: aLng,
+        remaining_time: duration
+      })
+
+      setTimeout(() ->
+        fakeDataForDemoDay(bLatLng, positionId)
+      , reloadingTime*1000)
     )
 
   reloadGeolocation = (bLatLng, positionId) ->
@@ -182,10 +233,14 @@ $ ->
 
     bLatLng = {lat: bLat, lng: bLng}
 
-
-    setTimeout(() ->
-      reloadGeolocation(bLatLng, positionId)
-    , reloadingTime*1000)
+    if ($('#demo-day').length)
+      setTimeout(() ->
+        fakeDataForDemoDay(bLatLng, positionId)
+      , reloadingTime*1000)
+    else
+      setTimeout(() ->
+        reloadGeolocation(bLatLng, positionId)
+      , reloadingTime*1000)
 
 
 

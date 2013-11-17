@@ -69,13 +69,27 @@ class TrackingsController < ApplicationController
       :remaining_time => params[:remaining_time]
       )
 
-      status = "OK"
+      @position = actual_position
+      seconds = @position.remaining_time
+      remaining_meters = @position.remaining_m
+      total_meters = @position.total_m
+
+      @remaining_time = sec_to_hour_min(seconds)
+
+      @remaining_m = remaining_m_to_percent(remaining_meters, total_meters)
+
+      render json: {
+        :status => "OK",
+        :remaining_time => @remaining_time,
+        :remaining_m => @remaining_m
+      }
       # sucessfull updated
     else
-      status = "NOT OK"
+      render json: {
+        :status => "NOT OK"
+      }
     end
 
-    render json: {:status => status}
 
   end
 
