@@ -7,6 +7,12 @@ $ ->
 
   reloadingTime = 10
 
+  if ($('.tracking-reload').length)
+    remainingTime = $('#remaining-time')
+    remainingM100 = $('#remaining-m-100')
+    remainingM0 = $('#remaining-m')
+    remainingPercentage = $('#remaining-m-percentage')
+
   # Functioning part
 
   createRoute = () ->
@@ -124,6 +130,14 @@ $ ->
 
       if (result.status == 'OK')
         console.log('data has been updated')
+
+        remainingM = result.remaining_m
+
+        remainingTime.text(result.remaining_time)
+        remainingM100.css('width', "#{100 - remainingM}%")
+        remainingM0.css('width', "#{remainingM}%")
+        remainingPercentage.text("#{remainingM}%")
+
       else if (result.status == "NOT OK")
         console.log('data has NOT been updated')
 
