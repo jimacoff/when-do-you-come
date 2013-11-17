@@ -12,11 +12,9 @@
     %link(rel="stylesheet" href="http://fonts.googleapis.com/css?family=Raleway:400,700")
     = csrf_meta_tags
   %body
-
+  .container
     = yield
-
-    .footer
-      %p.footer StartupWeekend 2013
+    .row.footer Startup Weekend 2013
 
     = yield :js_data
     = yield :scripts

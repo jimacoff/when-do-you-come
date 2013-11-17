@@ -6,6 +6,12 @@
 
 body {
   font-family: 'Raleway', sans-serif;
+  background-color: #f8f8f8;
+  color: #333;
+}
+
+.header {
+  
 }
 
 h1 {
@@ -84,3 +90,58 @@ button {
   width: 100%;
   height: 300px;
 }
+#map {
+    height: 0;
+    width: 0;
+}
+
+.transport-icon {
+    background-image: url('traffic_icons.png');
+    background-repeat: no-repeat;
+    width: 20px;
+    height: 20px;
+    display: block;
+    margin: 0 auto;
+}
+.transport {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;    
+    /*border-right: thin solid #ADADAD;*/
+}
+.transport button.btn:first-child {
+    border-bottom-left-radius: 6px;
+}
+.transport button.btn:last-child:not(:first-child) {
+    border-bottom-right-radius: 6px;
+}
+.transport button.btn {
+    margin: 0;
+    border-radius: 0;
+    width: 25%;
+    margin: 0 auto;
+    padding: 12.5px 0;
+}
+.transport button.btn + .btn {
+    border-left-width: 0;
+    margin-left: 0px;
+}
+.car { background-position: 0 -40px; } 
+.btn:hover .car { background-position: 0 -60px; }
+.bus { background-position: 0 -80px; } 
+.btn:hover .bus { background-position: 0 -100px; }
+.walk { background-position: 0 -120px; } 
+.btn:hover .walk { background-position: 0 -140px; }
+.bike { background-position: 0 -160px; } 
+.btn:hover .bike { background-position: 0 -180px; }
+input.last-input {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-width: 0;
+}
+a[href="/trackings/cancel_route/"] { text-decoration: none;}
+h3 { font-family: 'Raleway', sans-serif; margin: .25em 0; }
+
+.mother-info { padding-top: 3em;}

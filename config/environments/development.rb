@@ -33,7 +33,7 @@ WhenDoYouCome::Application.configure do
       address:              'smtp.gmail.com',
       port:                 587,
       domain:               'ontheway.com',
-      user_name:            'onthewaystartup@gmail.com',
+      user_name:            'onthewaystartup2@gmail.com',
       password:             'zelenaburina',
       authentication:       'plain',
       enable_starttls_auto: true  }
