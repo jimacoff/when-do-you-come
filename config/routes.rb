@@ -11,7 +11,6 @@ WhenDoYouCome::Application.routes.draw do
   resource :trackings do
     post 'init_route'
     post 'update_position'
-    get 'cancel_route'
   end
 
 
