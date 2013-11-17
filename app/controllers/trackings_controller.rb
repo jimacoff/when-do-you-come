@@ -12,7 +12,6 @@ class TrackingsController < ApplicationController
     if session[:id].nil?
       redirect_to root_path
     else
-      puts "Session id: "+session[:id].to_s
       @position = Position.find(session[:id])
 
       seconds = @position.remaining_time
@@ -36,13 +35,13 @@ class TrackingsController < ApplicationController
     if initial_position.save
       # sucessfull creation
       session[:id] = initial_position.id
+      session[:email] = params[:email]
 
       link = "www.pinker.cz:5555/locations/"+initial_position.id.to_s
 
       PositionMailer.welcome_email(params[:email], link).deliver
 
       render json: initial_position, only: ["id"]
-
     else
       # problem initializing
     end
@@ -78,6 +77,12 @@ class TrackingsController < ApplicationController
 
       @remaining_m = remaining_m_to_percent(remaining_meters, total_meters)
 
+      if @remaining_m > 100
+        @remaining_m = 100
+      elsif @remaining_m < 0
+        @remaining_m = 0
+      end
+
       render json: {
         :status => "OK",
         :remaining_time => @remaining_time,
@@ -90,11 +95,9 @@ class TrackingsController < ApplicationController
       }
     end
 
-
   end
 
   def cancel_route
-    puts session[:id].to_s+"=================="
     Position.find(session[:id]).destroy
     reset_session
 
