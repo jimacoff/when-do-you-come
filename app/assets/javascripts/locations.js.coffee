@@ -9,6 +9,11 @@ $ ->
   # Load data from html div's data
   js_data = $('#js-data')
 
+  remainingTime = $('#remaining-time')
+  remainingM100 = $('#remaining-m-100')
+  remainingM0 = $('#remaining-m')
+  remainingPercentage = $('#remaining-m-percentage')
+
   refreshInterval = 10 # in seconds
 
   # Functions' stuff
@@ -29,7 +34,7 @@ $ ->
         markers.pop()
         markers.push({
           latLng: [newActualLat, newActualLng],
-          options:{icon: map.iconMarkerGenerator('b-marker', 35, 35)}
+          options:{icon: map.iconMarkerGenerator('markerActual', 35, 35)}
         })
 
         map.reloadMapWithNewMarkers({
@@ -38,10 +43,12 @@ $ ->
           autofit: true
         })
 
-      $('#remaining-time').text(result.remaining_time)
-      $('#remaining-m-100').css('width', "#{100 - result.remaining_m}%")
-      $('#remaining-m').css('width', "#{result.remaining_m}%")
-      $('#remaining-m-percentage').text("#{result.remaining_m}%")
+      remainingM = result.remaining_m
+
+      remainingTime.text(result.remaining_time)
+      remainingM100.css('width', "#{100 - remainingM}%")
+      remainingM0.css('width', "#{remainingM}%")
+      remainingPercentage.text("#{remainingM}%")
 
       setTimeout(() ->
         updateActualPosition(markers)
@@ -65,14 +72,15 @@ $ ->
 
   markers.push({
     latLng: [aLat, aLng],
-    options:{icon: map.iconMarkerGenerator('b-marker', 35, 35)}
+    options:{icon: map.iconMarkerGenerator('markerA', 28, 37)}
   })
 
   bLat = js_data.data('blat')
   bLng = js_data.data('blng')
 
   markers.push({
-    latLng: [bLat, bLng]
+    latLng: [bLat, bLng],
+    options:{icon: map.iconMarkerGenerator('markerB', 28, 37)}
   })
 
   actualLat = js_data.data('actuallat')
@@ -80,7 +88,7 @@ $ ->
 
   markers.push({
     latLng: [actualLat, actualLng],
-    options:{icon: map.iconMarkerGenerator('b-marker', 35, 35)}
+    options:{icon: map.iconMarkerGenerator('markerActual', 28, 37)}
   })
 
   map.reloadMapWithNewMarkers({
