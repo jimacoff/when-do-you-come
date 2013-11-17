@@ -5,8 +5,14 @@
       %span.glyphicon.glyphicon-refresh.animate
     %p.text-center
       Updating Data.
-      = succeed "Do" do
-        %br/
+      %br
+      Keep open this app to track
+
+    .remaining
+      %p.text-center
+        %strong time remaining
+        %h3.text-center
+          = @remaining_time
 
     .remaining
       %p.text-center
@@ -21,15 +27,10 @@
             = @remaining_m
             Complete (warning)
         #remaining-m-percentage.percentage
-          = @remaining_m
+          = "#{@remaining_m} %"
 
-    .remaining
-      %p.text-center
-        %strong time remaining
-        %p.text-center
-          = @remaining_time
-      %a{href: "/trackings/cancel_route/"}
-        %button#cancel-route.btn.btn-danger.btn-block.btn-lg{type: "submit"} Cancel Route
+    %a{href: "/trackings/cancel_route/"}
+      %button#cancel-route.btn.btn-danger.btn-block.btn-lg{type: "submit"} Cancel Route
 
 
 #map
