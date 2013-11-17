@@ -24,6 +24,17 @@
     .col-md-5
       #map_canvas
 
+  .row
+    .col-md-10.col-md-offset-1
+      %h3.text-center.margin-top You can download our app from
+      %p.text-center.store-icons
+        %a.alert-link
+          %img{ src: "#{asset_path 'app-store.png'}", alt: "appstore"}
+        %a.alert-link
+          %img{ src: "#{asset_path 'google_play_icon.png'}", alt: "appstore"}
+        %a.alert-link
+          %img{ src: "#{asset_path 'windows_icon.png'}", alt: "appstore"}
+
 - content_for :js_data do
   %div{id: "js-data",
     data: { aLat: @position.a_poi_lat,
