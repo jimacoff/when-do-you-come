@@ -15,7 +15,6 @@ class TrackingsController < ApplicationController
       puts "Session id: "+session[:id].to_s
       @position = Position.find(session[:id])
 
-
       seconds = @position.remaining_time
       remaining_meters = @position.remaining_m
       total_meters = @position.total_m
@@ -39,7 +38,7 @@ class TrackingsController < ApplicationController
       # sucessfull creation
       session[:id] = initial_position.id
 
-      link = "www.pinker.cz:3000/locations/"+initial_position.id.to_s
+      link = "www.pinker.cz:5555/locations/"+initial_position.id.to_s
 
       PositionMailer.welcome_email(params[:mom_email], link).deliver
 
