@@ -40,7 +40,7 @@ class TrackingsController < ApplicationController
 
       link = "www.pinker.cz:5555/locations/"+initial_position.id.to_s
 
-      PositionMailer.welcome_email(params[:mom_email], link).deliver
+      PositionMailer.welcome_email(params[:email], link).deliver
 
       render json: initial_position, only: ["id"]
 
