@@ -14,7 +14,7 @@ $ ->
   remainingM0 = $('#remaining-m')
   remainingPercentage = $('#remaining-m-percentage')
 
-  refreshInterval = 10 # in seconds
+  refreshInterval = 1 # in seconds
 
   # Functions' stuff
 
