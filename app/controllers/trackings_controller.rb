@@ -81,6 +81,7 @@ class TrackingsController < ApplicationController
   end
 
   def cancel_route
+    puts session[:id].to_s+"=================="
     Position.find(session[:id]).destroy
     reset_session
   end
