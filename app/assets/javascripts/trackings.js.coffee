@@ -44,7 +44,8 @@ $ ->
             b_poi_lng: bLng,
             actual_poi_lat: aLat,
             actual_poi_lng: aLng,
-            remaining_time: duration
+            remaining_time: duration,
+            email: $('#mom-email').val()
           })
 
           )
