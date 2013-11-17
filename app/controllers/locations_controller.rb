@@ -11,6 +11,12 @@ class LocationsController < ApplicationController
 
     @remaining_m = remaining_m_to_percent(remaining_meters, total_meters)
 
+    if @remaining_m > 100
+      @remaining_m = 100
+    elsif @remaining_m < 0
+           @remaining_m = 0
+    end
+
     respond_to do |format|
       format.html
     end
@@ -26,6 +32,12 @@ class LocationsController < ApplicationController
     @remaining_time = sec_to_hour_min(seconds)
 
     @remaining_m = remaining_m_to_percent(remaining_meters, total_meters)
+
+    if @remaining_m > 100
+      @remaining_m = 100
+    elsif @remaining_m < 0
+           @remaining_m = 0
+    end
 
     render json: {
       actualPosition: @actualPosition,
