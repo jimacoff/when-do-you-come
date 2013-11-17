@@ -35,6 +35,7 @@ class TrackingsController < ApplicationController
     if initial_position.save
       # sucessfull creation
       session[:id] = initial_position.id
+      session[:email] = params[:email]
 
       link = "www.pinker.cz:5555/locations/"+initial_position.id.to_s
 
