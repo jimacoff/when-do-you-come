@@ -28,7 +28,8 @@
         %strong time remaining
         %p.text-center
           = @remaining_time
-      %button.btn.btn-danger.btn-block.btn-lg{type: "submit"} Cancel Route
+      %a{href: "/trackings/cancel_route/"}
+        %button#cancel-route.btn.btn-danger.btn-block.btn-lg{type: "submit"} Cancel Route
 
 
 #map
