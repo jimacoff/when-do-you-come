@@ -1,5 +1,5 @@
 class PositionMailer < ActionMailer::Base
-  default from: "startup@onmyway.com"
+  default from: "onthewaystartup2@gmail.com"
 
   def welcome_email(email, link)
     @link = link

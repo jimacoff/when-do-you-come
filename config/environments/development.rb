@@ -32,7 +32,7 @@ WhenDoYouCome::Application.configure do
   config.action_mailer.smtp_settings = {
       address:              'smtp.gmail.com',
       port:                 587,
-      domain:               'ontheway.com',
+      domain:               'pinker.sk',
       user_name:            'onthewaystartup2@gmail.com',
       password:             'zelenaburina',
       authentication:       'plain',
