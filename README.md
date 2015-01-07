@@ -1,6 +1,6 @@
 # When Do You Come?
 
-A (Startup Weekend 2013 Bratislava)[http://bratislava.startupweekend.org/] project, this application has been designed to track the position of a user, holding his/her smartphone, going to a specific location. On the other end of the application is another user, seeing estimated time till the first user arrives at the specified place. With the help of a nice web interface. 
+A [Startup Weekend 2013 Bratislava](http://bratislava.startupweekend.org/) project, this application has been designed to track the position of a user, holding his/her smartphone, going to a specific location. On the other end of the application is another user, seeing estimated time till the first user arrives at the specified place. With the help of a nice web interface. 
 
 ## Why?
 
