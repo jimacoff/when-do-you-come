@@ -14,4 +14,4 @@ We didn't have much time for tech speculation so we went the classical road: Rub
 
 ## Current State
 
-After winning the contest, we, unfortunately, stopped our work on the app. It's website was shut down and only thing that left was a Bitbucket git repo. I decided to open source it so here it is. If you are in a good mood, you can deploy the app and play with it. If you do, send me a link please so I can put it here.
+After winning the contest, we unfortunately stopped our work on the app. Its website was shut down and only thing that left was a Bitbucket git repo. I decided to open source it so here it is. If you are in a good mood, you can deploy the app and play with it. If you do, send me a link please so I can put it here.
